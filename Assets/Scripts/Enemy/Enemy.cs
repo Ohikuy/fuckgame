@@ -15,6 +15,13 @@ public class Enemy : MonoBehaviour
     public float hurtForce;
 
     public Transform attacker;
+
+    [Header("检测")]
+    public Vector2 centerOffset;
+    public Vector2 checkSize;
+    public float checkDistance;
+    public LayerMask attackLayer;
+
     [Header("计时器")]
     public float waitTime;
     public float waitTimeCounter;
@@ -78,8 +85,18 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    public bool FoundPlayer()
+    {
+        return Physics2D.BoxCast(transform.position+(Vector3)centerOffset,checkSize,0,faceDir,checkDistance,attackLayer);
+    }
+
+    public void SwitchState()
+    {
+
+    }
 
 
+    #region 事件执行方法
     public void OnTakeDamage(Transform attackTrans)
     {
         attacker = attackTrans;
@@ -116,4 +133,5 @@ public class Enemy : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    #endregion
 }

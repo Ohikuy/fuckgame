@@ -13,6 +13,11 @@ public class BoarPatrolState : BaseState
     public override void LoginUpdate()
     {
         //TODO:·¢ÏÖplayerÇÐ»»µ½chase×´Ì¬
+        if (currentEnemy.FoundPlayer())
+        {
+
+        }
+
         if ((!currentEnemy.physicsCheck.isGround && currentEnemy.faceDir.x>0)||(currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
         {
             currentEnemy.wait = true;
