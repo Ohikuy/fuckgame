@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
             Move();
     }
 
- 
 
     public void Move()
     {

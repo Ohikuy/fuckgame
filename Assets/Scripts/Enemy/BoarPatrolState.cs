@@ -15,7 +15,7 @@ public class BoarPatrolState : BaseState
         //TODO:·¢ÏÖplayerÇÐ»»µ½chase×´Ì¬
         if (currentEnemy.FoundPlayer())
         {
-
+            currentEnemy.SwitchState(NPCState.Chase);
         }
 
         if ((!currentEnemy.physicsCheck.isGround && currentEnemy.faceDir.x>0)||(currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
@@ -37,7 +37,9 @@ public class BoarPatrolState : BaseState
 
     public override void OnExit()
     {
+        currentEnemy.lostTimeCounter = currentEnemy.lostTime;
         currentEnemy.anim.SetBool("walk", false);    
+
     }
 
 

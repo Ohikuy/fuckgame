@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D),typeof(Animator),typeof(PhysicsCheck))]
 public class Enemy : MonoBehaviour
 {
     Rigidbody2D rb;
+    public BoxCollider2D boxCollider2D;
     [HideInInspector]public Animator anim;
     [HideInInspector]public PhysicsCheck physicsCheck;
     [Header("基本参数")]
@@ -27,6 +29,11 @@ public class Enemy : MonoBehaviour
     public float waitTimeCounter;
     public bool wait;
 
+    //chase转变回walk的时间
+    public float lostTime;
+    public float lostTimeCounter;
+
+
     [Header("状态")]
     public bool isHurt;
     public bool isDead;
@@ -36,11 +43,15 @@ public class Enemy : MonoBehaviour
     protected BaseState chaseState;
     protected virtual void Awake()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         physicsCheck = GetComponent<PhysicsCheck>();
         currentSpeed = normalSpeed;
         waitTimeCounter = waitTime;
+
+        //屏蔽不正确的碰撞
+        Physics2D.IgnoreCollision(boxCollider2D, GameObject.Find("dina").GetComponent<CapsuleCollider2D>());
     }
 
     private void OnEnable()
@@ -84,15 +95,34 @@ public class Enemy : MonoBehaviour
                 transform.localScale = new Vector3(faceDir.x, 1, 1);
             }
         }
+
+        if (!FoundPlayer()&&lostTimeCounter>0)
+        {
+            lostTimeCounter -= Time.deltaTime;
+        }
+        //else
+        //{
+        //    
+        //}
+
     }
     public bool FoundPlayer()
     {
         return Physics2D.BoxCast(transform.position+(Vector3)centerOffset,checkSize,0,faceDir,checkDistance,attackLayer);
+
     }
 
-    public void SwitchState()
+    public void SwitchState(NPCState state)
     {
-
+        var newState = state switch
+        {
+            NPCState.Patrol => patrolState,
+            NPCState.Chase => chaseState,
+            _ => null
+        };
+        currentState.OnExit();
+        currentState = newState;
+        currentState.OnEnter(this);
     }
 
 
@@ -110,7 +140,7 @@ public class Enemy : MonoBehaviour
         isHurt = true;
         anim.SetTrigger("hurt");
         Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
-
+        rb.velocity = new Vector2(0, rb.velocity.y);
         StartCoroutine(OnHurt(dir));
     }
 
@@ -134,4 +164,10 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
     #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position + (Vector3)centerOffset + new Vector3(checkDistance*-transform.localScale.x,0), 0.2f);
+    }
+    
 }
