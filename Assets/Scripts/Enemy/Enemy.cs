@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         physicsCheck = GetComponent<PhysicsCheck>();
         currentSpeed = normalSpeed;
-        waitTimeCounter = waitTime;
+        //waitTimeCounter = waitTime;
 
         //屏蔽不正确的碰撞
         Physics2D.IgnoreCollision(boxCollider2D, GameObject.Find("dina").GetComponent<CapsuleCollider2D>());

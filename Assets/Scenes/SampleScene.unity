@@ -445,7 +445,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381430292
 GameObject:
@@ -680,7 +680,7 @@ AudioSource:
   m_GameObject: {fileID: 474558212}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3109889728937486332, guid: 72e8f6272dba1124a8ee6133bda30695, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5acc825f2525b9346bb59342549f4749, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.263
@@ -779,7 +779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &474558215
 AudioSource:
@@ -790,7 +790,7 @@ AudioSource:
   m_GameObject: {fileID: 474558212}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1446351388398217467, guid: 72e8f6272dba1124a8ee6133bda30695, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -889,6 +889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991e56edf83ba114182957c44240c845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FXEvent: {fileID: 11400000, guid: 710a25e40a36d0945a521d0bb47343ee, type: 2}
+  BGMEvent: {fileID: 11400000, guid: 027d62f449fa3bf4ca6de0537ede3cc8, type: 2}
   BGMSource: {fileID: 474558213}
   FXSource: {fileID: 474558215}
 --- !u!1 &498872158
@@ -1024,7 +1026,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -1262,6 +1264,7 @@ GameObject:
   - component: {fileID: 652342575}
   - component: {fileID: 652342577}
   - component: {fileID: 652342576}
+  - component: {fileID: 652342578}
   m_Layer: 7
   m_Name: Attack1
   m_TagString: Untagged
@@ -1331,6 +1334,21 @@ PolygonCollider2D:
       - {x: 0.8218082, y: -0.06955269}
       - {x: 1.4416962, y: 0.1501587}
       - {x: 1.6692213, y: 1.1150979}
+--- !u!114 &652342578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652342574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5916446ee3ee84fa1cfe5cabe7dfad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 710a25e40a36d0945a521d0bb47343ee, type: 2}
+  audioClip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  playOnEnable: 1
 --- !u!1 &665754205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1591,53 @@ Transform:
   - {fileID: 1642828114}
   - {fileID: 665754206}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &958594262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 958594264}
+  - component: {fileID: 958594263}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &958594263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958594262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5916446ee3ee84fa1cfe5cabe7dfad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 027d62f449fa3bf4ca6de0537ede3cc8, type: 2}
+  audioClip: {fileID: 8300000, guid: 5acc825f2525b9346bb59342549f4749, type: 3}
+  playOnEnable: 1
+--- !u!4 &958594264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958594262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031746029
 GameObject:
@@ -1765,7 +1829,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1167467432
 GameObject:
@@ -1849,7 +1913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169362559
 GameObject:
@@ -2139,7 +2203,7 @@ Transform:
   m_Children:
   - {fileID: 608153060}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1176616819
 GameObject:
@@ -2329,7 +2393,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1437776488
 GameObject:
@@ -3924,6 +3988,7 @@ GameObject:
   - component: {fileID: 1546821688}
   - component: {fileID: 1546821690}
   - component: {fileID: 1546821689}
+  - component: {fileID: 1546821691}
   m_Layer: 7
   m_Name: Attack2
   m_TagString: Untagged
@@ -3991,6 +4056,21 @@ PolygonCollider2D:
       - {x: -0.47580028, y: 0.33898044}
       - {x: 0.20778966, y: 0.46829832}
       - {x: 1.7638475, y: 0.68445724}
+--- !u!114 &1546821691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546821687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5916446ee3ee84fa1cfe5cabe7dfad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioEvent: {fileID: 11400000, guid: 710a25e40a36d0945a521d0bb47343ee, type: 2}
+  audioClip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  playOnEnable: 1
 --- !u!1 &1565390181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,7 +4668,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1723797682
 MonoBehaviour:
@@ -5161,7 +5241,7 @@ RectTransform:
   m_Children:
   - {fileID: 1176616820}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5256,7 +5336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &2021878180
 CapsuleCollider2D:
