@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
         currentState.LoginUpdate();
         TimeCounter();
+        
 
     }
     private void FixedUpdate()

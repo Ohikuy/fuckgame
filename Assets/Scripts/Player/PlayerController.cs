@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("监听事件")]
+    public SceneLoadEventSO loadEvent;
+    public VoidEventSO afterSceneLoadedEvent;
+
     public PlayerInputControl inputControl;
     private Vector2 inputDirection;
     public Rigidbody2D rb;
@@ -83,12 +87,18 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         inputControl.Enable();
+        //loadEvent.LoadRequestEvent += onLoadEvent;
+        //afterSceneLoadedEvent.OnEventRaised += OnAfterSceneLoadedEvent;
     }
 
     private void OnDisable()
     {
         inputControl.Disable();
+        //loadEvent.LoadRequestEvent -= onLoadEvent;
+        //afterSceneLoadedEvent.OnEventRaised -= OnAfterSceneLoadedEvent;
     }
+
+
 
     private void Update()
     {
@@ -103,6 +113,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    //加载结束之后启动控制
+    private void OnAfterSceneLoadedEvent()
+    {
+        //inputControl.Gameplay.Enable();
+    }
+
+    //场景加载过程停止控制
+    private void onLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
+    {
+        //inputControl.Gameplay.Disable();
+    }
     public void Move()
     {
         if(!isCrouch)
