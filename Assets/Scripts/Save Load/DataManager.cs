@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class DataManager : MonoBehaviour
 {
+    //单例模式
     public static DataManager instance;
 
     [Header("事件监听")]
     public VoidEventSO saveDataEvent;
 
-    private List<ISaveable> saveableList = new List<ISaveable>();
+    public List<ISaveable> saveableList = new List<ISaveable>();
     private Data saveData;
 
     private void Awake()
@@ -43,22 +44,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    //保存在列表中，统一通知存储加载
-    public void RegisterSaveData(ISaveable saveable)
-    {
-        //DataManager.instance.RegisterSaveData(saveable);
 
-        if (!saveableList.Contains(saveable)) 
-        {
-            saveableList.Add(saveable);
-        }
-    }
-
-    public void UnRegisterSaveData(ISaveable saveable)
-    {
-        //DataManager.instance.UnRegisterSaveData(saveable);
-        saveableList.Remove(saveable);
-    }
 
     public void Save()
     {

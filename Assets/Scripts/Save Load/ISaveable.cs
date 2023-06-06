@@ -8,6 +8,7 @@ public interface ISaveable
     void RegisterSaveData(ISaveable saveable);
     void UnRegisterSaveData(ISaveable saveable);
 
+
     void GetSaveData(Data data);
     void LoadData(Data data);
 }

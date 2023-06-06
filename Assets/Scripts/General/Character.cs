@@ -18,6 +18,8 @@ public class Character : MonoBehaviour,ISaveable
     public UnityEvent<Character> OnHealthChange;
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent Ondie;
+
+
     private void NewGame()
     {
         currentHealth = maxHealth;
@@ -29,14 +31,14 @@ public class Character : MonoBehaviour,ISaveable
         //保证新游戏的血量和血条都是满的
         newGameEvent.OnEventRaised += NewGame;
         ISaveable saveable = this;
-        saveable.RegisterSaveData(this);
+        saveable.RegisterSaveData(saveable);
     }
 
     private void OnDisable()
     {
         newGameEvent.OnEventRaised -= NewGame;
         ISaveable saveable = this;
-        saveable.UnRegisterSaveData(this);
+        saveable.UnRegisterSaveData(saveable);
     }
 
     private void Update()
@@ -99,14 +101,19 @@ public class Character : MonoBehaviour,ISaveable
         return GetComponent<DataDefinition>();
     }
 
+    //保存在列表中，统一通知存储加载
     public void RegisterSaveData(ISaveable saveable)
     {
-        DataManager.instance.RegisterSaveData(saveable);
+
+        if (!DataManager.instance.saveableList.Contains(saveable)) 
+        {
+                DataManager.instance.saveableList.Add(saveable);
+        }
     }
 
     public void UnRegisterSaveData(ISaveable saveable)
     {
-        DataManager.instance.RegisterSaveData(saveable); 
+        DataManager.instance.saveableList.Remove(saveable);
     }
 
     public void GetSaveData(Data data)
