@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour,ISaveable
 {
     [Header("事件监听")]
     public VoidEventSO newGameEvent;
@@ -28,11 +28,15 @@ public class Character : MonoBehaviour
     {
         //保证新游戏的血量和血条都是满的
         newGameEvent.OnEventRaised += NewGame;
+        ISaveable saveable = this;
+        saveable.RegisterSaveData(this);
     }
 
     private void OnDisable()
     {
         newGameEvent.OnEventRaised -= NewGame;
+        ISaveable saveable = this;
+        saveable.UnRegisterSaveData(this);
     }
 
     private void Update()
@@ -87,6 +91,42 @@ public class Character : MonoBehaviour
         {
             invulnerable = true;
             invulnerableCounter = invulnerableDuration;
+        }
+    }
+
+    public DataDefinition GetDataID()
+    {
+        return GetComponent<DataDefinition>();
+    }
+
+    public void RegisterSaveData(ISaveable saveable)
+    {
+        DataManager.instance.RegisterSaveData(saveable);
+    }
+
+    public void UnRegisterSaveData(ISaveable saveable)
+    {
+        DataManager.instance.RegisterSaveData(saveable); 
+    }
+
+    public void GetSaveData(Data data)
+    {
+        if (data.characterPosDict.ContainsKey(GetDataID().ID))
+        {
+            data.characterPosDict[GetDataID().ID] = transform.position;
+        }
+        else
+        {
+            data.characterPosDict.Add(GetDataID().ID, transform.position);
+        }
+
+    }
+
+    public void LoadData(Data data)
+    {
+        if (data.characterPosDict.ContainsKey(GetDataID().ID))
+        {
+            transform.position = data.characterPosDict[GetDataID().ID];
         }
     }
 
