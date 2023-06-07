@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         //获得之前要获取
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        inputControl.Enable();
+        //inputControl.Enable();
     }
 
     private void PlayerAttack(InputAction.CallbackContext obj)
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDead()
     {
         isDead = true;
-        inputControl.Gameplay.Disable();
+        //inputControl.Gameplay.Disable();
     }
     
     private void CheckState()
