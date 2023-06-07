@@ -6,16 +6,17 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour,ISaveable
 {
     public Transform playerTrans;
     public Vector3 firstPosition;
     public Vector3 menuPosition;
-
+    public DataManager dataManager; 
 
     [Header("事件监听")]
     public SceneLoadEventSO loadEventSO;
     public VoidEventSO newGameEvent;
+    public VoidEventSO backToMenuEvent;
 
 
     [Header("广播")]
@@ -51,12 +52,29 @@ public class SceneLoader : MonoBehaviour
     {
         loadEventSO.LoadRequestEvent += OnLoadRequestEvent;
         newGameEvent.OnEventRaised += NewGame;
+        backToMenuEvent.OnEventRaised += OnBackToMenuEvent;
+
+        RegisterSaveData();
+
+        
     }
 
     private void onDisable()
     {
+        
         loadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
         newGameEvent.OnEventRaised -= NewGame;
+        backToMenuEvent.OnEventRaised -= OnBackToMenuEvent;
+
+        UnRegisterSaveData();
+
+
+    }
+
+    private void OnBackToMenuEvent()
+    {
+        sceneToLoad = menuScene;
+        loadEventSO.RaiseLoadRequestEvent(sceneToLoad,menuPosition,true);
     }
 
     private void NewGame() 
@@ -149,5 +167,40 @@ public class SceneLoader : MonoBehaviour
             aftersSceneLoadedEvent.RaiseEvent();
     }
 
+    public DataDefinition GetDataID()
+    {
+        return GetComponent<DataDefinition>();
+    }
 
+    public void RegisterSaveData()
+    {
+        if (!dataManager.saveableList.Contains(this))
+        {
+            dataManager.saveableList.Add(this);
+            }
+
+    }
+
+    public void UnRegisterSaveData()
+    {
+        DataManager.instance.saveableList.Remove(this);
+    }
+
+    public void GetSaveData(Data data)
+    {
+        //通知工厂
+        data.SaveGameScene(currentLoadedScene);
+    }
+
+    public void LoadData(Data data)
+    {
+        var playerID = playerTrans.GetComponent<DataDefinition>().ID;
+        if (data.characterPosDict.ContainsKey(playerID))
+        {
+            positionToGo = data.characterPosDict[playerID];
+            sceneToLoad = data.GetSavedScene();
+
+            OnLoadRequestEvent(sceneToLoad, positionToGo, true);
+        }
+    }
 }

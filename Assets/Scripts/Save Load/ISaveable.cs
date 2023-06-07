@@ -5,8 +5,8 @@ using UnityEngine;
 public interface ISaveable 
 {
     DataDefinition GetDataID();
-    void RegisterSaveData(ISaveable saveable);
-    void UnRegisterSaveData(ISaveable saveable);
+    void RegisterSaveData();
+    void UnRegisterSaveData();
 
 
     void GetSaveData(Data data);

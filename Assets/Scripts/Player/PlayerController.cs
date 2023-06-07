@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("监听事件")]
-    public SceneLoadEventSO loadEvent;
+    public SceneLoadEventSO sceneLoadEvent;
     public VoidEventSO afterSceneLoadedEvent;
+    public VoidEventSO loadDataEvent;
+    public VoidEventSO backToMenuEvent;
 
     public PlayerInputControl inputControl;
     private Vector2 inputDirection;
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
         //获得之前要获取
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        inputControl.Enable();
     }
 
     private void PlayerAttack(InputAction.CallbackContext obj)
@@ -87,6 +91,8 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         inputControl.Enable();
+        loadDataEvent.OnEventRaised += OnLoadDataEvent;
+        backToMenuEvent.OnEventRaised += OnLoadDataEvent;
         //loadEvent.LoadRequestEvent += onLoadEvent;
         //afterSceneLoadedEvent.OnEventRaised += OnAfterSceneLoadedEvent;
     }
@@ -94,6 +100,8 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         inputControl.Disable();
+        loadDataEvent.OnEventRaised -= OnLoadDataEvent;
+        backToMenuEvent.OnEventRaised -= OnLoadDataEvent;
         //loadEvent.LoadRequestEvent -= onLoadEvent;
         //afterSceneLoadedEvent.OnEventRaised -= OnAfterSceneLoadedEvent;
     }
@@ -120,9 +128,15 @@ public class PlayerController : MonoBehaviour
     }
 
     //场景加载过程停止控制
-    private void onLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
+    private void OnLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
     {
         //inputControl.Gameplay.Disable();
+    }
+
+    //读取游戏进度
+    private void OnLoadDataEvent()
+    {
+        isDead = false;
     }
     public void Move()
     {
