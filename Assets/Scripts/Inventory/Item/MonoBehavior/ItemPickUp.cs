@@ -5,7 +5,15 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public ItemData_SO itemData;
-    private void OnTriggerEnter2D(Collider2D other)
+    public BoxCollider2D boxCollider2D;
+
+    protected virtual void Awake()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(boxCollider2D, GameObject.Find("dina").GetComponent<CapsuleCollider2D>());
+    }
+
+        private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

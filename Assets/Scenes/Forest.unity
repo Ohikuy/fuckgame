@@ -966,6 +966,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &624153664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3331130153167248092, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+  m_PrefabInstance: {fileID: 3331130152761783751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &624153665
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624153664}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0079802275, y: 0}
+  m_Size: {x: 0.5187807, y: 0.5187807}
+  m_Direction: 0
 --- !u!1 &665754205
 GameObject:
   m_ObjectHideFlags: 0
@@ -3991,6 +4012,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1849716499837482836, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.13572872
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849716499837482836, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.16039495
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849716499837482836, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.018136919
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849716499837482836, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.050783403
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849716499837482836, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3331130153167248090, guid: 2acdfc4e1a0e3c543b5418a87fa7e70a, type: 3}
       propertyPath: m_RootOrder
       value: 5
