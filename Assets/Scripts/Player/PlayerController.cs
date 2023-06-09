@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         //获得之前要获取
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        //inputControl.Enable();
+        inputControl.Enable();
     }
 
     private void PlayerAttack(InputAction.CallbackContext obj)
@@ -124,19 +124,20 @@ public class PlayerController : MonoBehaviour
     //加载结束之后启动控制
     private void OnAfterSceneLoadedEvent()
     {
-        //inputControl.Gameplay.Enable();
+        inputControl.Enable();
     }
 
     //场景加载过程停止控制
     private void OnLoadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
     {
-        //inputControl.Gameplay.Disable();
+        inputControl.Disable();
     }
 
     //读取游戏进度
     private void OnLoadDataEvent()
     {
-        isDead = false;
+        //TODO:目前没有太好的统一启动玩家死亡后复活移动的方法，只能批量传事件到角色控制器恢复控制，但实在太麻烦了，先把这个注释了
+        //isDead = false;
     }
     public void Move()
     {
@@ -196,7 +197,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDead()
     {
         isDead = true;
-        //inputControl.Gameplay.Disable();
+        inputControl.Gameplay.Disable();
     }
     
     private void CheckState()

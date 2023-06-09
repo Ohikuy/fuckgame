@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public ItemData_SO itemData;
-    public BoxCollider2D boxCollider2D;
+    private BoxCollider2D boxCollider2D;
 
     protected virtual void Awake()
     {

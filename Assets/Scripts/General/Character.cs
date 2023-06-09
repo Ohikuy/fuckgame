@@ -19,7 +19,6 @@ public class Character : MonoBehaviour,ISaveable
     public UnityEvent<Transform> OnTakeDamage;
     public UnityEvent Ondie;
 
-
     private void NewGame()
     {
         currentHealth = maxHealth;
@@ -30,6 +29,7 @@ public class Character : MonoBehaviour,ISaveable
     {
         //保证新游戏的血量和血条都是满的
         newGameEvent.OnEventRaised += NewGame;
+        currentHealth = maxHealth;
         ISaveable saveable = this;
         saveable.RegisterSaveData();
     }
