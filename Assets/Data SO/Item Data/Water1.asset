@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemName: water1
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: d78092a1d4faa864ab59312671419704, type: 3}
   itemAmount: 1
   description: "\u8FD9\u662F\u4E00\u74F6\u666E\u901A\u836F\u6C34"
+  stackable: 1

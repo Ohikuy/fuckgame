@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     private void OnLoadDataEvent()
     {
         //TODO:目前没有太好的统一启动玩家死亡后复活移动的方法，只能批量传事件到角色控制器恢复控制，但实在太麻烦了，先把这个注释了
-        //isDead = false;
+        isDead = false;
     }
     public void Move()
     {
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerDead()
     {
         isDead = true;
-        inputControl.Gameplay.Disable();
+        //inputControl.Gameplay.Disable();
     }
     
     private void CheckState()
