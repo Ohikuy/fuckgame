@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 6645528092919195209, guid: 34f554ca9cc87654289c1574f026868d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f554ca9cc87654289c1574f026868d, type: 3}
 --- !u!224 &2943800397222035077 stripped

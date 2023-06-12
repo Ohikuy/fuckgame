@@ -6,7 +6,7 @@ public enum SlotType {BAG,WEAPON,ARMOR,ACTION}
 public class SlotHolder : MonoBehaviour
 {
     public SlotType slotType;
-    public ItemUI itemUI = null;
+    public ItemUI itemUI;
 
     public void UpdateItem()
     {
