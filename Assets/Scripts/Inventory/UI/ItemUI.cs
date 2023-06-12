@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ItemUI : MonoBehaviour
 {
     public Image icon = null;
+    //TextMeshPro支持版本为2021.2
     public Text amount = null;
 
     //可读可写
@@ -24,10 +25,6 @@ public class ItemUI : MonoBehaviour
         if (item != null)
         {
             icon.sprite = item.itemIcon;
-            var a = itemAmount;
-            var b = amount;
-            var c = itemAmount.ToString("00");
-            //此处有bug
             amount.text = itemAmount.ToString("00");
 
             icon.gameObject.SetActive(true);

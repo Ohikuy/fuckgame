@@ -25,6 +25,7 @@ public class ItemPickUp : MonoBehaviour
         {
             //将物品添加到背包
             inventoryManager.inventoryData.AddItem(itemData, itemData.itemAmount);
+            //每次拾取物品后刷新图片
             inventoryManager.inventoryUI.RefreshUI();
             Destroy(gameObject);
         }
