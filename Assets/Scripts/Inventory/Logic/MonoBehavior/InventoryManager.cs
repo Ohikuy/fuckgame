@@ -30,16 +30,20 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         //让背包和数据库连接，刷新图片
         inventoryUI.RefreshUI();
-        actionUI.RefreshUI();
-        equipmentUI.RefreshUI();
+        //actionUI.RefreshUI();
+        //equipmentUI.RefreshUI();
     }
 
     #region 检查拖拽物品是否在每一个slot范围内
+
+    //判断鼠标的点是否在方格范围内
     public bool CheckInInventoryUI(Vector3 position)
     {
         for(int i = 0;i < inventoryUI.slotHolders.Length; i++)
         {
             RectTransform t = inventoryUI.slotHolders[i].transform as RectTransform;
+            Debug.Log("vector3 position");
+            Debug.Log(position);
 
             if (RectTransformUtility.RectangleContainsScreenPoint(t, position))
             {

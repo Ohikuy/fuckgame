@@ -26,7 +26,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         InventoryManager.Instance.currentDrag.originalParent = (RectTransform)transform.parent;
         //记录原始数据
 
-        //拖动渠道dragCanvas
+        //拖动到达父级的dragCanvas
         transform.SetParent(InventoryManager.Instance.dragCanvas.transform, true);
     }
 
@@ -39,12 +39,10 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         //放下物品 交换数据    
-        //是否指向UI物品
+        //判断是否在格子的范围内
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            if(InventoryManager.Instance.CheckInActionUI(eventData.position)||
-               InventoryManager.Instance.CheckInEquipmentUI(eventData.position) ||
-               InventoryManager.Instance.CheckInInventoryUI(eventData.position))
+            if (InventoryManager.Instance.CheckInInventoryUI(eventData.position) || InventoryManager.Instance.CheckInEquipmentUI(eventData.position) || InventoryManager.Instance.CheckInActionUI(eventData.position))
             {
                 if (eventData.pointerEnter.gameObject.GetComponent<SlotHolder>())
                     targetHolder = eventData.pointerEnter.gameObject.GetComponent<SlotHolder>();
