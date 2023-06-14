@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
+
     //创建第三方数据
     public class DragData
     {
@@ -42,8 +43,12 @@ public class InventoryManager : Singleton<InventoryManager>
         for(int i = 0;i < inventoryUI.slotHolders.Length; i++)
         {
             RectTransform t = inventoryUI.slotHolders[i].transform as RectTransform;
-            Debug.Log("vector3 position");
-            Debug.Log(position);
+            //把UI坐标（rectTransform.anchoredPosition）转换成屏幕坐标
+            //Debug.Log("tScreenPosition:"+t.position);
+            //Debug.Log("tScreemLocalPositon"+t.localPosition);
+            //Debug.Log("tScreemAnchoredPosition" + t.anchoredPosition);
+            //Debug.Log("vector3 position:"+position);
+            //Debug.Log(position);
 
             if (RectTransformUtility.RectangleContainsScreenPoint(t, position))
             {
