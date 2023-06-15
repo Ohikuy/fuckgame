@@ -66,13 +66,20 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 switch (targetHolder.slotType)
                 {
                     case SlotType.BAG:
-                        SwapItem();
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Useable)
+                            SwapItem();
                         break;
                     case SlotType.WEAPON:
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Weapon)
+                            SwapItem();
                         break;
                     case SlotType.ARMOR:
+                        if (currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Armor)
+                            SwapItem();
                         break;
                     case SlotType.ACTION:
+                        if(currentItemUI.Bag.items[currentItemUI.Index].itemData.itemType == ItemType.Useable)    
+                            SwapItem();
                         break;
                 }
 

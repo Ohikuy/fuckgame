@@ -16,10 +16,13 @@ public class SlotHolder : MonoBehaviour
                 itemUI.Bag = InventoryManager.Instance.inventoryData;
                 break;
             case SlotType.WEAPON:
+                itemUI.Bag = InventoryManager.Instance.equipmentData;
                 break;
             case SlotType.ARMOR:
+                itemUI.Bag = InventoryManager.Instance.equipmentData;
                 break;
             case SlotType.ACTION:
+                itemUI.Bag = InventoryManager.Instance.actionData;
                 break;
         }
         //Bag里面的列表里的物品对应的序号，itemUI.bag 在上面拿到了inventoryData，找到格子同样序号的item

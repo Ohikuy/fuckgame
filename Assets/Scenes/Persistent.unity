@@ -3955,7 +3955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcf18112b7347f42bb1ed43426c053b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
   inventoryData: {fileID: 11400000, guid: de638cd621670a141bdb7f8d79b9fe91, type: 2}
   actionData: {fileID: 11400000, guid: d0330883ccf806b4c8d5a41226fed587, type: 2}
   equipmentData: {fileID: 11400000, guid: 4b482a70d2c8f62458be4b78063e885e, type: 2}
@@ -8526,7 +8525,6 @@ GameObject:
   - component: {fileID: 2142038571}
   - component: {fileID: 2142038568}
   - component: {fileID: 2142038570}
-  - component: {fileID: 2142038569}
   m_Layer: 5
   m_Name: Drag Canvas
   m_TagString: Untagged
@@ -8555,23 +8553,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &2142038569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142038567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &2142038570
 MonoBehaviour:
   m_ObjectHideFlags: 0
